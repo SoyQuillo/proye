@@ -83,6 +83,10 @@ router.get("/me", protect, async (req, res) => {
   res.json(req.user);
 });
 
+router.get("/hi", async (req, res) => {
+  res.send("Hello")
+});
+
 router.post("/logout", (req, res) => {
     res.cookie('token', '', {...cookieOptions, maxAge: 1})
     res.json({message: "Logged out successfully"})
