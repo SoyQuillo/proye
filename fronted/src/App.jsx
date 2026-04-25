@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
 import axios from "axios";
 import Navbar from "./components/Navbar";
 import NotFound from "./components/NotFound";
+import ProtectedRoutes from "./pages/ProtectedRoutes";
+import PatientPage from "./pages/patient/PatientPage";
+import CreatePatientPage from "./pages/patient/CreatePatientPage";
 
 axios.defaults.withCredentials = true;
 
@@ -46,6 +49,24 @@ function App() {
           path="/register"
           element={
             user ? <Navigate to="/" /> : <RegisterPage setUser={setUser} />
+          }
+        />
+
+        <Route
+          path="/patients"
+          element={
+            <ProtectedRoutes user={user}>
+              <PatientPage />
+              <Route path="/patients/create" element={<CreatePatientPage />} />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/patients/create"
+          element={
+            <ProtectedRoutes user={user}>
+              <CreatePatientPage />
+            </ProtectedRoutes>
           }
         />
         <Route path="*" element={<NotFound />} />

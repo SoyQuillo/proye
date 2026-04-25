@@ -1,0 +1,3 @@
+-Cambiar el navbar
+-Hacer la pagina para crear pacientes, doctores
+-Terminar la base de datos
