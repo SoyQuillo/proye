@@ -26,7 +26,6 @@ function CreatePatientPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // manejar cambios
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -34,7 +33,6 @@ function CreatePatientPage() {
     });
   };
 
-  // enviar formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -42,8 +40,6 @@ function CreatePatientPage() {
 
     try {
       await axios.post("/api/patients", form);
-
-      // redirigir a lista
       navigate("/patients");
 
     } catch (err) {

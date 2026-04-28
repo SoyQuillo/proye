@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import patientRoutes from "./routes/patients.routes.js";
+import doctorRoutes from "./routes/doctors.routes.js";
+import appointmentRoutes from "./routes/appointments.routes.js";
 
 dotenv.config();
 
@@ -19,6 +21,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/patients", patientRoutes);
+app.use("/api/doctors", doctorRoutes);
+app.use("/api/appointments", appointmentRoutes);
 
 const PORT = process.env.PORT || 3000;
 
